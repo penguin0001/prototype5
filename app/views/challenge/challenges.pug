@@ -1,0 +1,76 @@
+
+mixin airConditioning()
+    // house grid (should probably generate in JS)
+    .challenge-box-left
+        - for (let i = 0; i <= 15; i++)
+            .col
+                - for (let j = 0; j <= 4; j++)
+                    - if (j == 0 && i >= 0 && i <= 8) 
+                        .ac-button
+                    - else if (j >= 1 && j <= 3 && i >= 6 && i <= 14)
+                        .ac-button
+                    - else if (j == 4 && i >= 0 && i <= 8)
+                        .ac-button
+                    - else 
+                        .ac-square
+    // instructions and submit button
+    .challenge-box-right
+        .challenge-text
+            h2(style="margin:0; padding:0;").subheader 1. Air Conditioning
+            p Alice has decided to install 4 air conditioning units into the house shown to the left. 
+            p The house is made up of cells. An air conditioning unit occupies one cell and cools that cell instantly. The cool air from a cell takes 1 minute to spread to all its neighbouring cells as shown below. The image shows how it takes 3 minutes to cool a small room with one air conditioning unit placed on the cell marked 0. 
+            p Task: Place 4 air conditioning units in the house below, so that the entire house is cooled in as little time as possible. Click on the cells to place a unit. Click again to remove the unit. Press submit when you're finished.
+            img#ac-image(src="/images/aircon-pic-light.png", style="height: 40%; width: 40%; margin-top: 20px;")
+            p.warning#ac-warning(style="visibility:hidden") Remember to place all 4 units!
+        .buttons-container
+            .clear-button#ac-clear Clear
+            .submit-button#ac-submit Submit
+
+
+mixin dontCrash()
+    .challenge-box-left 
+        // grid generated here
+    .challenge-box-right
+        .challenge-text 
+            h2(style="margin:0; padding:0;").subheader 2. Don't Crash
+            p A robotic vacuum cleaner moves in a room of 6x7 square tiles with walls surrounding it.
+            p The robot is always in the middle of a square and is always facing towards on of the four walls. It can be moved according to a program built with these commands:
+            p FORWARD - move next to the next tile it is facing 
+            p LEFT - turn 90 degress anticlockwise while staying on the same tile.
+            p RIGHT - turn 90 degrees clockwise whie staying on the same tile.
+            p Assume the robot is to execute the following program: 
+            p FORWARD LEFT FORWARD RIGHT FORWARD 
+            p Task: In the room to the left, select all the tiles where the robot can start and execute this program without crashing into a wall, no matter which wall it is initially facing. Press submit when you're finished.
+            p.warning#crash-warning(style="visibility:hidden") You haven't placed any tiles!
+        .buttons-container
+            .clear-button#crash-clear Clear
+            .submit-button#crash-submit Submit
+
+mixin royalFountains()
+    .challenge-box-left 
+        // generate grid in js
+    .challenge-box-right
+        .challenge-text 
+            h2(style="margin:0; padding:0;").subheader 3. Royal Fountains
+            p The king is visiting the royal fountains (the blue circles to the left).
+            p He has a command: "I wish to go on a walk between two of my fountains. I will tell you which ones when I arrive. I expect to be able to walk on red carpets between the two fountains. I do not mind whether the first path from my start fountain or the last path to my final fountain has a red carpet or not."
+            p Task: Click on the paths between the fountains to lay down the least number of red carpets so that the king's command will be obeyed. Press submit when you're finished.
+            p.warning#rf-warning(style="visibility:hidden") You haven't placed any carpets!
+            p#numcarpets Carpets: 0
+        .buttons-container
+            .clear-button#rf-clear Clear
+            .submit-button#rf-submit Submit
+
+
+mixin startScreen()
+    .heading-container
+        h2(style="margin:0; padding:0; text-align:center;").subheader Start Challenge
+    .button-container
+        .main-button#start-submit Begin
+
+mixin endScreen()
+    h2(style="margin:0; padding:0; text-align:center;").subheader Challenge Complete
+        form(action="/results", method="post", role="form")
+            input#challengeResults(name="results", style="visibility: hidden")
+            .button-container
+                button.main-button#end-submit Save Results

@@ -1,0 +1,9 @@
+extends ../layout
+block content 
+    h1.pageheader=title 
+    .card
+        h2.card-header Information
+        // update to be able to delete and update account details
+        p Name: #{user.name}
+        p Email: #{user.email}
+        p Account type: #{user.userType}

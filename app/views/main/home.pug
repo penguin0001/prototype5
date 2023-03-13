@@ -1,0 +1,44 @@
+extends ../layout 
+block content
+    -if (user)
+        h1.pageheader Welcome, #{user.name}
+        a(href="/challenge")
+            .card.flex-center
+                .left
+                    img.brain(src="images/brain-inverse-svg.svg")
+                .right
+                    h1.card-header Take Challenge
+                    p.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        a(href="/results")
+            .card.flex-center
+                .left(style="text-align:center")
+                    i.fa-solid.fa-file-lines.card-icon
+                .right
+                    h1.card-header View Results
+                    p.text Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+    -else
+        h1.pageheader Welcome
+        a(href="/auth/login")
+            .card.flex-left
+                .left.flex-center(style="text-align:left")
+                    i.fa-solid.fa-right-to-bracket.card-icon
+                .right
+                    h1.card-header Login
+                    p.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        a(href="/auth/register")
+            .card.flex-left
+                .left.flex-center(style="text-align:left")
+                    i.fa-solid.fa-user-plus.card-icon
+                .right
+                    h1.card-header Register
+                    p.text Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    
+    
+    a(href="/about")
+        .card.flex-left
+            .left.flex-center(style="text-align:left")
+                i.fa-solid.fa-circle-question.card-icon
+            .right
+                h1.card-header About
+                p.text Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.

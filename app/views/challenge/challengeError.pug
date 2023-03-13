@@ -1,0 +1,10 @@
+extends ../layout
+block content 
+    h1.pageheader Error saving results
+    .card
+        p Sorry, something went wrong trying to save your results.
+        form(action="/results", method="post", role="form")
+            input#challengeResults(name="results", style="visibility: hidden")
+            .button-container
+                button.main-button#end-submit Try again?
+    

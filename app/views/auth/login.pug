@@ -1,0 +1,23 @@
+extends ../layout
+block content 
+    h1.pageheader=title
+    p=name
+    form.card.form(action="/auth/login", method="POST")
+        -if (messages.error)
+            p.warning=messages.error 
+        .row
+            label(for="email") Email 
+            br
+            input.input.text-input(type="text", id="email", name="email", required)
+        .row
+            label(for="password") Password 
+            br
+            input.input.text-input(type="password", id="password", name="password", required)
+        .row
+            button.submit-button(type="submit") Login
+        .row
+            p No account? 
+                a(href="/auth/register") Register an account
+    
+
+    

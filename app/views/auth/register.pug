@@ -1,0 +1,30 @@
+extends ../layout
+block content 
+    h1.pageheader=title 
+    p=name
+    form.card.form(action="/auth/register", method="POST")
+        .row 
+            label Account type: 
+            br
+            br
+            input(type="radio", id="educator", name="usertype", value="Educator")
+            label(for="educator") Educator 
+            input(type="radio", id="student", name="usertype", value="Student")
+            label(for="student") Student
+        .row
+            label(for="name") Name 
+            br
+            input.input.text-input(type="text", id="name", name="name", required)
+        .row
+            label(for="email") Email 
+            br
+            input.input.text-input(type="email", id="email", name="email", required)
+        .row
+            label(for="password") Password 
+            br
+            input.input.text-input(type="password", id="password", name="password", required)
+        .row
+            button.submit-button(type="submit") Register 
+        .row
+            p Already registered? 
+                a(href="/auth/login") Login

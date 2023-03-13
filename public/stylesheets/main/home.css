@@ -1,0 +1,21 @@
+
+.fa-file-lines.card-icon, .fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon {
+    background: var(--blue-gradient-2);
+    font-size: 100px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 40px;
+    margin-left: 5px;
+}
+
+.fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon{
+    font-size: 90px;
+    margin-right: 30px;
+    margin-left: 0px;
+}
+
+.brain {
+    height: 100px;
+    margin-right: 30px;
+}
