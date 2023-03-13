@@ -61,4 +61,4 @@ typings/
 .next
 
 # testing
-/test
+test/
