@@ -1,8 +1,9 @@
 extends ../layout
 block content 
     h1.pageheader=title 
-    p=name
     form.card.form(action="/auth/register", method="POST")
+        -if(messages.error)
+            p.warning=messages.error
         .row 
             label Account type: 
             br

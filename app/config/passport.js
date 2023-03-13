@@ -11,14 +11,14 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (username, password, 
             // no user
             if (!user) {
                 return done(null, false, {
-                    message: 'No user with this email exists.'
+                    message: 'No user with this email exists'
                 });
             }
             
             // user w invalid password
             if (!user.validPassword(password)) {
                 return done(null, false, {
-                    message: 'Incorrect password.'
+                    message: 'Incorrect password'
                 });
             }
 

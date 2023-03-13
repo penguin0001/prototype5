@@ -23,6 +23,7 @@ const account = (req, res) => {
 const register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {
         console.log("all fields required");
+        req.flash("error", "All fields required");
         return res
             .status(400)
             .redirect('/auth/register');
@@ -34,6 +35,7 @@ const register = (req, res) => {
     user.setPassword(req.body.password);
     user.save((err) => {
         if (err) {
+            req.flash("error", "There was an error. That user may already exist.");
             console.log(err);
             res
                 .status(404)
