@@ -2,7 +2,8 @@
 
 const passport = require('passport');
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
+//const User = mongoose.model('User');
+const User = require('../models/users');
 
 /* GET 'auth/register' - render register page */
 const renderRegister = (req, res) => {
@@ -24,9 +25,8 @@ const register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {
         console.log("all fields required");
         req.flash("error", "All fields required");
-        return res
-            .status(400)
-            .redirect('/auth/register');
+        res.status(400)
+        return res.redirect('/auth/register');
     }
     const user = new User();
     user.name = req.body.name;
@@ -37,13 +37,11 @@ const register = (req, res) => {
         if (err) {
             req.flash("error", "There was an error. That user may already exist.");
             console.log(err);
-            res
-                .status(404)
-                .redirect('/auth/register');
+            res.status(404)
+            res.redirect('/auth/register');
         } else {
-            res
-                .status(200)
-                .redirect('/');
+            res.status(200)
+            res.redirect('/');
         }
     });
 };

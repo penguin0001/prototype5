@@ -41,11 +41,13 @@ userSchema.methods.setPassword = function (password) {
         .toString('hex');
 };
 
-userSchema.methods.validPassword = function (password) {
+userSchema.methods.validatePassword = function (password) {
     const hash = crypto
         .pbkdf2Sync(password, this.salt, 1000, 64, 'sha512')
         .toString('hex');
     return this.hash === hash;
 };
 
-mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

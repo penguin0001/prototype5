@@ -61,6 +61,3 @@ process.on('SIGTERM', () => {
 
 // bring in the schema
 require('../models/users');
-
-
-
