@@ -91,8 +91,7 @@ describe('register', () => {
     // mock User model
     User.mockImplementation(() => ({
       save: jest.fn().mockImplementation((callback) => {
-        const error = new Error();
-        callback(error);
+        callback(new Error());
       }),
       setPassword: jest.fn().mockImplementation()
     }));

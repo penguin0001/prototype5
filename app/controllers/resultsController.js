@@ -1,7 +1,7 @@
 /* RESULTS CONTROLLER: CREATE AND RETRIEVE RESULTS */
 
 const mongoose = require('mongoose');
-const User = mongoose.model("User");
+const User = require('../models/users');
 
 /* GET '/results' - get results for current user and render */
 const results = (req, res) => {
