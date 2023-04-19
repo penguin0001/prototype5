@@ -1,4 +1,4 @@
-const { home, about } = require("../controllers/mainController");
+const { home, about } = require("../app/controllers/mainController");
 
 describe('home', () => {
     test('should render main/home page with title Home and user object', () => {

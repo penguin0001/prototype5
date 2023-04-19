@@ -1,4 +1,4 @@
-const { challenge, challengeResults, challengeError } = require("../controllers/challengeController");
+const { challenge, challengeResults, challengeError } = require("../app/controllers/challengeController");
 
 describe('challenge', () => {
     test('should render challenge/challenge page with title Challenge and user object', () => {

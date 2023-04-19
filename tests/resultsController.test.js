@@ -1,6 +1,6 @@
-const { results, createResult } = require("../controllers/resultsController");
-const User = require('../models/users');
-jest.mock('../models/users');
+const { results, createResult } = require("../app/controllers/resultsController");
+const User = require('../app/models/users');
+jest.mock('../app/models/users');
   
 describe('results', () => {
 

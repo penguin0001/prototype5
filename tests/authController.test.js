@@ -1,8 +1,8 @@
-const { renderLogin, renderRegister, account, register, login, logout } = require("../controllers/authController");
-const User = require('../models/users');
+const { renderLogin, renderRegister, account, register, login, logout } = require("../app/controllers/authController");
+const User = require('../app/models/users');
 const passport = require('passport');
 jest.mock('passport');
-jest.mock('../models/users');
+jest.mock('../app/models/users');
 
 describe('renderRegister', () => {
     test('should render auth/register page with title Register', () => {

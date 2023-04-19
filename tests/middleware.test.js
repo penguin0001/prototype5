@@ -1,5 +1,5 @@
-const checkAuthenticated = require('../middleware/checkAuthenticated');
-const checkNotAuthenticated = require('../middleware/checkNotAuthenticated');
+const checkAuthenticated = require('../app/middleware/checkAuthenticated');
+const checkNotAuthenticated = require('../app/middleware/checkNotAuthenticated');
 
 describe("checkAuthenticated", () => {
     // mock res and next
