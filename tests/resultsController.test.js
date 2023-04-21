@@ -3,7 +3,7 @@ const User = require('../app/models/users');
 jest.mock('../app/models/users');
   
 describe('results', () => {
-
+    let req, res, consoleSpy;
     beforeEach(() => {
         // disable console.logs for testing
         consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -79,7 +79,7 @@ describe('results', () => {
 });
 
 describe('createResult', () => {
-    
+    let consoleSpy, res, req;
     beforeEach(() => {
         // disable console.logs for testing
         consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
@@ -111,7 +111,7 @@ describe('createResult', () => {
             })
         }));
         // call function to be tested
-        results(req, res);
+        createResult(req, res);
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(400);

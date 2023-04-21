@@ -21,6 +21,9 @@ const challengeRouter = require('./app/routes/challenge');
 
 const app = express();
 
+// hide web technology
+app.disable("x-powered-by");
+
 // view engine setup
 app.set('views', path.join(__dirname, 'app', 'views'));
 app.set('view engine', 'pug');

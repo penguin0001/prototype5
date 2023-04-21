@@ -120,80 +120,43 @@ describe('register', () => {
 });
 
 describe('logout', () => {
-    test('should redirect to the home page', () => {
-        // mock req, res and next
-        const req = { 
-            logout: jest.fn((callback) => callback()), 
-            user: {} 
-        };
-        const res = { 
-            redirect: jest.fn() 
-        };
-        const next = jest.fn();
-        // call function to be tested
-        logout(req, res, next);
-        // tests
-        expect(req.logout).toHaveBeenCalled();
-        expect(res.redirect).toHaveBeenCalledWith('/');
-        expect(next).not.toHaveBeenCalled();
-    });
-})
+  // mock req, res and next
+  let req, res, next;
+  beforeEach(() => {
+    res = {
+      redirect: jest.fn(),
+    };
+    next = jest.fn();
+  });
 
-/*
-describe('login', () => {
-    let req, res;
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 
-    beforeEach(() => {
-        // mock req and res objects
-        req = {
-            body: { 
-                email: 'example@example.com',
-                 password: 'example' 
-            } 
-        };
-        res = {
-            redirect: jest.fn()
-        };
-    })
-
-    test('should authenticate user on successful login', () => {
-
-        // mock passport.authenticate
-        passport.authenticate.mockImplementation((strategy, options, callback) => {
-            callback(null, { email: 'example@example.com' }, null);
-        });
-
-        // call function to be tested 
-        login();
-
-        // tests
-        expect(passport.authenticate).toHaveBeenCalledWith('local', {
-            successRedirect: '/',
-            failureRedirect: '/auth/login',
-            failureFlash: true
-        });
-        expect(res.redirect).toHaveBeenCalledWith('/');
-    });
-
-    test('should redirect to login page on failed login', () => {
-        // Mock passport.authenticate function
-        passport.authenticate.mockImplementation((strategy, options, callback) => {
-            callback(null, false, { message: 'Invalid credentials' });
-        });
-
-        // Call login function with mock request and response objects
-        login();
-
-        // tests
-        expect(passport.authenticate).toHaveBeenCalledWith('local', {
-            successRedirect: '/',
-            failureRedirect: '/auth/login',
-            failureFlash: true
-        });
-        expect(req.flash).toHaveBeenCalledWith('error', 'Invalid credentials');
-        expect(res.redirect).toHaveBeenCalledWith('/auth/login');
-    });
+  test('should redirect to "/" when logout succeeds', () => {
+    // mock req with no error
+    req = {
+      logout: jest.fn((callback) => callback(null)),
+    };
+    // call function to be tested
+    logout(req, res, next);
+    // tests
+    expect(req.logout).toHaveBeenCalled();
+    expect(res.redirect).toHaveBeenCalledWith('/');
+    expect(next).not.toHaveBeenCalled();
+  });
+  
+  test('should call next with an error when logout fails', () => {
+    // mock req with error
+    const error = new Error('Logout failed');
+    req = {
+      logout: jest.fn((callback) => callback(error)),
+    };
+    // call function to be tested
+    logout(req, res, next);
+    // tests
+    expect(req.logout).toHaveBeenCalled();
+    expect(res.redirect).not.toHaveBeenCalled();
+    expect(next).toHaveBeenCalledWith(error);
+  });
 });
-
-
-*/
