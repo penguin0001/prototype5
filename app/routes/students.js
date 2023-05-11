@@ -17,5 +17,7 @@ router.post('/educator', checkAuthenticated, checkStudent, studentsController.ad
 router.get('/', checkAuthenticated, checkEducator, studentsController.students)
 router.post('/', checkAuthenticated, checkEducator, studentsController.addStudent)
 
+router.post('/remove/:id', checkAuthenticated, checkEducator, studentsController.removeStudent)
+
 
 module.exports = router;

@@ -109,8 +109,22 @@ const addEducator = (req, res) => {
             });
         }
     })
-
-   
 }
 
-module.exports= {educator, addEducator, students, addStudent}
+/* POST /students/remove/:id REMOVE A STUDENT/EDUCATOR LINK */
+const removeStudent = (req, res) => {
+    // delete
+	StudentRel.deleteOne({student: req.params.id}).exec((err) => {
+		if (err) {
+			console.log("Error deleting rel");
+			res.status(400);
+			res.redirect("/students")
+		} else {
+			console.log("Rel deleted");
+			res.status(200);
+			res.redirect("/students");
+		}
+	});
+}
+
+module.exports= {educator, addEducator, students, addStudent, removeStudent}

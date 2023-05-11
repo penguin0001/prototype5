@@ -102,6 +102,10 @@ p {
     padding-bottom: 10px;
 }
 
+table {
+    text-align: left;
+}
+
 /* CARD */
 
 .card {

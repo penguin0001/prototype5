@@ -11,13 +11,18 @@ block content
         h2 Your students:
         table
             tr 
-                th Username 
-                th Email address 
-                th Results
+                th(style="width: 300px") Username 
+                th(style="width: 300px") Email address 
+                th(style="width: 200px") Results
+                th Remove
             each student in students
                 tr 
                     td #{ student.name } 
                     td #{ student.email }
                     td 
                         a(href="/results/" + student._id) View results 
+                    td 
+                        form(action="/students/remove/" + student._id, method="POST")
+                            button.remove-button(type="submit") Remove
+                
 
