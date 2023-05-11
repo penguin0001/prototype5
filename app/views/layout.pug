@@ -30,6 +30,11 @@ html
           a.nav-text(href="/") Home
           a.nav-text(href="/challenge") Test
           a.nav-text(href="/results") Results
+          -if (user)
+            -if (user.userType=="Student")
+              a.nav-text(href="/students/educator") Educator
+            -else if (user.userType=="Educator")
+              a.nav-text(href="/students") Students
           a.nav-text(href="/about") About
           -if (user)
             .navright

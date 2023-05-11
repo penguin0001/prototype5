@@ -2,7 +2,21 @@ const mongoose = require('mongoose');
 const User = require('../models/users');
 const StudentRel = require('../models/students');
 
-/* GET '/educator'- render add educator page */
+/* GET '/students' - render students page */
+const students = async (req, res) => {
+    const rels = await StudentRel.find({educator:req.user._id}).exec();
+    let students = [];
+
+    // wait for all the students to be added 
+    await Promise.all(rels.map(async (rel) => {
+        const student = await User.findById(rel.student).exec();
+        students.push(student);
+    }));
+
+    res.render('students/students', { title: "Students", user: req.user, students: students});
+}
+
+/* GET '/students/educator'- render add educator page */
 const educator = async (req, res) => {
     const rel = await StudentRel.findOne({student:req.user._id}).exec();
     console.log(rel);
@@ -20,7 +34,7 @@ const educator = async (req, res) => {
 };
 
 
-/* POST '/addeducator'- add an educator to a student */
+/* POST '/students/educator'- add an educator to a student */
 const addEducator = (req, res) => {
     if (!req.body.code) {
         console.log("No code found");
@@ -46,4 +60,4 @@ const addEducator = (req, res) => {
     });
 }
 
-module.exports= {educator, addEducator}
+module.exports= {educator, addEducator, students}

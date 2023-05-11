@@ -4,12 +4,16 @@ const router = express.Router();
 // controller
 const studentsController = require('../controllers/studentsController');
 
-// auth middleware
+// middleware for restricting page access
 const checkAuthenticated = require('../middleware/checkAuthenticated');
 const checkNotAuthenticated = require('../middleware/checkNotAuthenticated');
+const checkStudent = require('../middleware/checkStudent');
+const checkEducator = require('../middleware/checkEducator');
 
 // get routes
-router.get('/educator', checkAuthenticated, studentsController.educator);
-router.post('/educator', checkAuthenticated, studentsController.addEducator);
+router.get('/educator', checkAuthenticated, checkStudent, studentsController.educator);
+router.post('/educator', checkAuthenticated, checkStudent, studentsController.addEducator);
+
+router.get('', checkAuthenticated, checkEducator, studentsController.students)
 
 module.exports = router;
