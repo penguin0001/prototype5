@@ -10,7 +10,10 @@ describe('results', () => {
         // mock req and res objects
         req = {
             user: {},
-            flash: jest.fn()
+            flash: jest.fn(),
+            params: {
+                id: null
+            }
         };
         res = {
             status: jest.fn().mockReturnThis(),
@@ -24,7 +27,7 @@ describe('results', () => {
         jest.resetAllMocks();
     });
       
-    test('should redirect to /challenge/error with status code 400 if there is an error finding user', () => {
+    test('should redirect to /test/error with status code 400 if there is an error finding user', () => {
         // mock .findById(id) and .exec(err, user) with an error
         User.findById.mockImplementationOnce(() => ({
             exec: jest.fn().mockImplementation(callback => {
@@ -36,10 +39,10 @@ describe('results', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/error');
+        expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
-    test('should redirect to /challenge/error with status code 404 if user is not found', () => {
+    test('should redirect to /test/error with status code 404 if user is not found', () => {
         // mock .findById(id) and .exec(err, user) with no error but no user object
         User.findById.mockImplementationOnce(() => ({
             exec: jest.fn().mockImplementation(callback => {
@@ -51,7 +54,7 @@ describe('results', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/error');
+        expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
     test('should render results/results with status code 200 if user is found', () => {
@@ -103,7 +106,7 @@ describe('createResult', () => {
         jest.resetAllMocks();
     });
 
-    test('should redirect to /challenge/error with status code 400 if error finding user', () => {
+    test('should redirect to /test/error with status code 400 if error finding user', () => {
         // mock .findById(id) and .exec(err, user) with error and no user object
         User.findById.mockImplementationOnce(() => ({
             exec: jest.fn().mockImplementation(callback => {
@@ -115,10 +118,10 @@ describe('createResult', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/error');
+        expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
-    test('should redirect to /challenge/error with status code 404 if user not found', () => {
+    test('should redirect to /test/error with status code 404 if user not found', () => {
         // mock .findById(id) and .exec(err, user) with no error but no user object
         User.findById.mockImplementationOnce(() => ({
             exec: jest.fn().mockImplementation(callback => {
@@ -130,10 +133,10 @@ describe('createResult', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/error');
+        expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
-    test('should redirect to /challenge/error with status code 404 if error saving user', () => {
+    test('should redirect to /test/error with status code 404 if error saving user', () => {
         // mock user object
         const user = { 
             results: [ "result1" ] 
@@ -153,10 +156,10 @@ describe('createResult', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/error');
+        expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
-    test('should redirect to /challenge/results with status code 201 if user succesfully saved', () => {
+    test('should redirect to /test/results with status code 201 if user succesfully saved', () => {
         // mock user object
         const user = { 
             results: [ "result1" ] 
@@ -176,6 +179,6 @@ describe('createResult', () => {
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(201);
-        expect(res.redirect).toHaveBeenCalledWith('/challenge/results');
+        expect(res.redirect).toHaveBeenCalledWith('/test/results');
     });
 });

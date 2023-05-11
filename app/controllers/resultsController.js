@@ -38,7 +38,7 @@ const results = (req, res) => {
                 console.log("User not found");
                     res
                     .status(404)
-                    .redirect('/ets/error');
+                    .redirect('/test/error');
             } else {
                 console.log("User found, retrieving results");
                 console.log(user.results);

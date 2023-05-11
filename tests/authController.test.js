@@ -93,7 +93,8 @@ describe('register', () => {
       save: jest.fn().mockImplementation((callback) => {
         callback(new Error());
       }),
-      setPassword: jest.fn().mockImplementation()
+      setPassword: jest.fn().mockImplementation(),
+      generateCode: jest.fn().mockImplementation()
     }));
     // call function to be tested
     register(req, res);
@@ -109,7 +110,8 @@ describe('register', () => {
       save: jest.fn().mockImplementation((callback) => {
         callback(null);
       }),
-      setPassword: jest.fn().mockImplementation()
+      setPassword: jest.fn().mockImplementation(),
+      generateCode: jest.fn().mockImplementation()
     }));
     // call function to be tested
     register(req, res);

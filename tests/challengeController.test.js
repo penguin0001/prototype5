@@ -12,7 +12,7 @@ describe('challenge', () => {
         // call function to be tested
         challenge(req, res);
         // tests
-        expect(res.render).toHaveBeenCalledWith('challenge/challenge', { title: 'Challenge' , user: req.user });
+        expect(res.render).toHaveBeenCalledWith('challenge/challenge', { title: 'Test' , user: req.user });
     });
 });
 
@@ -33,7 +33,7 @@ describe('challengeResults', () => {
 });
 
 describe('challengeError', () => {
-    test('should render challenge/error page with title Results and user object', () => {
+    test('should render challenge/error page with title Erorr and user object', () => {
         // mock req and res objects
         const req = {
             user: {}
@@ -44,6 +44,6 @@ describe('challengeError', () => {
         // call function to be tested
         challengeError(req, res);
         // tests
-        expect(res.render).toHaveBeenCalledWith('challenge/challengeError', { title: 'Results' , user: req.user });
+        expect(res.render).toHaveBeenCalledWith('challenge/challengeError', { title: 'Error' , user: req.user });
     });
 });
