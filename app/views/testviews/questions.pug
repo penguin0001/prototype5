@@ -64,12 +64,12 @@ mixin royalFountains()
 
 mixin startScreen()
     .heading-container
-        h2(style="margin:0; padding:0; text-align:center;").subheader Start Challenge
+        h2(style="margin:0; padding:0; text-align:center;").subheader Start test
     .button-container
         .main-button#start-submit Begin
 
 mixin endScreen()
-    h2(style="margin:0; padding:0; text-align:center;").subheader Challenge Complete
+    h2(style="margin:0; padding:0; text-align:center;").subheader Test Complete
         form(action="/results", method="post", role="form")
             input#challengeResults(name="results", style="visibility: hidden")
             .button-container

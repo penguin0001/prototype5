@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const challengeSchema = new mongoose.Schema({
+const questionSchema = new mongoose.Schema({
     number: {
         type: String,
         required: true
@@ -16,4 +16,4 @@ const challengeSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('Challenge', challengeSchema);
+mongoose.model('Question', questionSchema);

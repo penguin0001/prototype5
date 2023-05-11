@@ -33,12 +33,12 @@ const results = (req, res) => {
                 console.log("Error finding user");
                 res
                 .status(400)
-                .redirect('/challenge/error')
+                .redirect('/test/error')
             } else if (!user) {
                 console.log("User not found");
                     res
                     .status(404)
-                    .redirect('/challenge/error');
+                    .redirect('/ets/error');
             } else {
                 console.log("User found, retrieving results");
                 console.log(user.results);
@@ -60,12 +60,12 @@ const createResult = (req, res) => {
                 console.log("Error finding user");
                 res
                 .status(400)
-                .redirect('/challenge/error')
+                .redirect('/test/error')
             } else if (!user) {
                 console.log("User not found");
                     res
                     .status(404)
-                    .redirect('/challenge/error');
+                    .redirect('/test/error');
             } else {
                 console.log("User found, attempting to add result");
                 user.results.push({
@@ -77,12 +77,12 @@ const createResult = (req, res) => {
                         console.log("Failed to save user");
                         res
                         .status(404)
-                        .redirect('/challenge/error');
+                        .redirect('/test/error');
                     } else {
                         console.log("Successfully saved user with new result");
                         res 
                         .status(201)
-                        .redirect('/challenge/results');
+                        .redirect('/test/results');
                     }
                 });
             }

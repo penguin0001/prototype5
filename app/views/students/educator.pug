@@ -1,10 +1,10 @@
 extends ../layout
 block content 
-    h1=title
+    h1.pageheader=title
     .card
         - if (educator)
             h2 Your educator is: #{ educator.name }
-            p Email address: #{educator.email}
+            p Email address: #{ educator.email }
             p Your educator can view your results history
             br
             button.red-button Click to remove
@@ -16,5 +16,3 @@ block content
             form(action="/students/educator", method="POST")
                 input.text-input(type="text", id="code", name="code") 
                 button.submit-button(type="submit", style="margin: 30px; margin-top: 0px; margin-bottom: 0px;") Submit
-
-        

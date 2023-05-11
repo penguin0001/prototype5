@@ -24,6 +24,14 @@ block content
                 .right
                     h1.card-header View Results
                     p.text View all your previous test results.
+        -if (user.userType == "Student")
+             a(href="/students/educator")
+                .card.flex-left
+                    .left.flex-center(style="text-align:left")
+                        i.fa-solid.fa-graduation-cap.card-icon
+                    .right
+                        h1.card-header Educator
+                        p.text Add an educator so they can see your results.
 
     -else
         h1.pageheader Welcome
