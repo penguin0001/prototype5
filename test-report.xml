@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Users\robyn\Documents\documents\_University\Year 3\fyp-all\prototype5\tests\mainController.test.js">
+    <testCase name="home should render main/home page with title Home and user object" duration="9"/>
+    <testCase name="about should render main/about page with title About and user object" duration="1"/>
+  </file>
+  <file path="C:\Users\robyn\Documents\documents\_University\Year 3\fyp-all\prototype5\tests\middleware.test.js">
+    <testCase name="checkAuthenticated should should redirect to /auth/login if there is no user" duration="13"/>
+    <testCase name="checkAuthenticated should call next() if there is a user" duration="2"/>
+    <testCase name="checkNotAuthenticated should should redirect to / if there is a user" duration="3"/>
+    <testCase name="checkNotAuthenticated should call next() if there is not a user" duration="2"/>
+  </file>
+  <file path="C:\Users\robyn\Documents\documents\_University\Year 3\fyp-all\prototype5\tests\challengeController.test.js">
+    <testCase name="challenge should render challenge/challenge page with title Challenge and user object" duration="9"/>
+    <testCase name="challengeResults should render challenge/challengeResults page with title Results and user object" duration="2"/>
+    <testCase name="challengeError should render challenge/error page with title Results and user object" duration="2"/>
+  </file>
+  <file path="C:\Users\robyn\Documents\documents\_University\Year 3\fyp-all\prototype5\tests\resultsController.test.js">
+    <testCase name="results should redirect to /challenge/error with status code 400 if there is an error finding user" duration="8"/>
+    <testCase name="results should redirect to /challenge/error with status code 404 if user is not found" duration="2"/>
+    <testCase name="results should render results/results with status code 200 if user is found" duration="2"/>
+    <testCase name="createResult should redirect to /challenge/error with status code 400 if error finding user" duration="3"/>
+    <testCase name="createResult should redirect to /challenge/error with status code 404 if user not found" duration="2"/>
+    <testCase name="createResult should redirect to /challenge/error with status code 404 if error saving user" duration="2"/>
+    <testCase name="createResult should redirect to /challenge/results with status code 201 if user succesfully saved" duration="1"/>
+  </file>
+  <file path="C:\Users\robyn\Documents\documents\_University\Year 3\fyp-all\prototype5\tests\authController.test.js">
+    <testCase name="renderRegister should render auth/register page with title Register" duration="28"/>
+    <testCase name="renderLogin should render auth/login page with title Login" duration="1"/>
+    <testCase name="account should render auth/account page with title Account and user object" duration="1"/>
+    <testCase name="register should redirect to /auth/register with a 400 status code if any required fields are missing" duration="4"/>
+    <testCase name="register should redirect to /auth/register with a 404 status code if user already exists" duration="4"/>
+    <testCase name="register should redirect to / with a 200 status code if user is successfully registered" duration="1"/>
+    <testCase name="logout should redirect to the home page" duration="1"/>
+  </file>
+</testExecutions>

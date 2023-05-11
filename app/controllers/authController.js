@@ -32,6 +32,7 @@ const register = (req, res) => {
     user.email = req.body.email;
     user.userType = req.body.usertype;
     user.setPassword(req.body.password);
+    user.generateCode();
     user.save((err) => {
         if (err) {
             req.flash("error", "There was an error. That user may already exist.");

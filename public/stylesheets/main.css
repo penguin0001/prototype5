@@ -1,5 +1,5 @@
 
-.fa-file-lines.card-icon, .fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon {
+.fa-file-lines.card-icon, .fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon, .fa-graduation-cap {
     background: var(--blue-gradient-2);
     font-size: 100px;
     -webkit-background-clip: text;
@@ -9,13 +9,13 @@
     margin-left: 5px;
 }
 
-.fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon{
+.fa-circle-question.card-icon, .fa-right-to-bracket.card-icon, .fa-user-plus.card-icon, .fa-graduation-cap {
     font-size: 90px;
     margin-right: 30px;
     margin-left: 0px;
 }
 
-.fa-user-plus.card-icon {
+.fa-user-plus.card-icon, .fa-graduation-cap  {
     margin-right: 20px;
     font-size: 80px;
 }

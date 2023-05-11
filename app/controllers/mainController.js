@@ -12,6 +12,6 @@ const about = (req, res) => {
 
 module.exports = {
     home, 
-    about, 
+    about
 }
 

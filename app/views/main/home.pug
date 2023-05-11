@@ -2,20 +2,28 @@ extends ../layout
 block content
     -if (user)
         h1.pageheader Welcome, #{user.name}
+        -if (user.userType == "Educator")
+            a(href="/students")
+                .card.flex-left
+                    .left.flex-center(style="text-align:left")
+                        i.fa-solid.fa-graduation-cap.card-icon
+                    .right
+                        h1.card-header Students
+                        p.text View and add new students.
         a(href="/challenge")
-            .card.flex-center
+            .card.flex-left
                 .left
                     img.brain(src="images/brain-inverse-svg.svg")
                 .right
-                    h1.card-header Take Challenge
-                    p.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    h1.card-header Take Test
+                    p.text Click here to take the computational thinking test.
         a(href="/results")
-            .card.flex-center
+            .card.flex-left
                 .left(style="text-align:center")
                     i.fa-solid.fa-file-lines.card-icon
                 .right
                     h1.card-header View Results
-                    p.text Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    p.text View all your previous test results.
 
     -else
         h1.pageheader Welcome
@@ -25,14 +33,14 @@ block content
                     i.fa-solid.fa-right-to-bracket.card-icon
                 .right
                     h1.card-header Login
-                    p.text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    p.text Already have an account? Click here to login.
         a(href="/auth/register")
             .card.flex-left
                 .left.flex-center(style="text-align:left")
                     i.fa-solid.fa-user-plus.card-icon
                 .right
                     h1.card-header Register
-                    p.text Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    p.text New? Click here to register a new account.
     
     
     a(href="/about")
@@ -41,4 +49,4 @@ block content
                 i.fa-solid.fa-circle-question.card-icon
             .right
                 h1.card-header About
-                p.text Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                p.text View our about page.

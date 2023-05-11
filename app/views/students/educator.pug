@@ -1,0 +1,17 @@
+extends ../layout
+block content 
+    
+    - if (educator)
+        h2 Your educator is: #{ educator.name }
+        button Click to remove
+
+    -if (!educator)
+        h2 Your code is: #{ user.code }
+        p Give this to your educator so they can add you.
+        p or
+        h2 Add an educator by entering the code they provide: 
+        form(action="/addeducator", method="POST")
+            input(type="text", id="code", name="code") 
+            button.submit(type="submit") Submit
+
+            

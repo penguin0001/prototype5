@@ -25,12 +25,15 @@ html
     .main-container
       nav
         .nav-buttons 
+          .center-content
+            img.nav-brain(src="/images/brain-square-inverse.png")
           a.nav-text(href="/") Home
-          a.nav-text(href="/challenge") Challenge
+          a.nav-text(href="/challenge") Test
           a.nav-text(href="/results") Results
           a.nav-text(href="/about") About
           -if (user)
             .navright
+              small.nav-text #{user.email}
               a.nav-text(href="/auth/account") Account&nbsp;&nbsp;
                 i.fa-solid.fa-user
               form(action="/auth/logout", method="POST")
