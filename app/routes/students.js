@@ -14,6 +14,7 @@ const checkEducator = require('../middleware/checkEducator');
 router.get('/educator', checkAuthenticated, checkStudent, studentsController.educator);
 router.post('/educator', checkAuthenticated, checkStudent, studentsController.addEducator);
 
-router.get('', checkAuthenticated, checkEducator, studentsController.students)
+router.get('/', checkAuthenticated, checkEducator, studentsController.students)
+router.post('/', checkAuthenticated, checkEducator, studentsController.addStudent)
 
 module.exports = router;

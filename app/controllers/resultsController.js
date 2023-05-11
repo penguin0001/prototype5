@@ -24,7 +24,7 @@ const results = (req, res) => {
                 .status(200)
                 .render('results/results', { title: "Results", results: user.results, user: req.user });
             }
-        })
+    })
 };
 
 /* POST '/results' - create a result and add it to the current users results list */

@@ -16,6 +16,43 @@ const students = async (req, res) => {
     res.render('students/students', { title: "Students", user: req.user, students: students});
 }
 
+/* POST '/students'- add a student to an educator */
+const addStudent = (req, res) => {
+    if (!req.body.code) {
+        console.log("No code found");
+        res.status(400);
+        res.redirect('/students/');
+    } 
+    // find student via code
+    User.findOne({ code: req.body.code })
+            .exec((err, student) => {
+                // check student doesn't already have educator
+                StudentRel.findOne({student:student._id}).exec((err, rel) => {
+                    if (err) { 
+                        res.status(400);
+                        res.redirect('/students/');  
+                    } else if (rel) {
+                        res.status(400);
+                        res.redirect('/students/');
+                    } else {
+                        const rel = new StudentRel();
+                        rel.educator = req.user._id;
+                        rel.student = student._id;
+                        rel.save((err) => {
+                            if (err) {
+                                console.log(err);
+                                res.status(404);
+                                res.redirect('/students/');
+                            } else {
+                                res.status(200);
+                                res.redirect('/students/');
+                            }
+                        });
+                    }
+                });
+            });
+}
+
 /* GET '/students/educator'- render add educator page */
 const educator = async (req, res) => {
     const rel = await StudentRel.findOne({student:req.user._id}).exec();
@@ -39,25 +76,40 @@ const addEducator = (req, res) => {
     if (!req.body.code) {
         console.log("No code found");
         res.status(400);
-        return res.redirect('/educator');
+        res.redirect('/students/educator');
     } 
-    User.findOne({ code: req.body.code })
-    .exec((err, educator) => {
-        console.log(educator);
-        const rel = new StudentRel();
-        rel.educator = educator._id;
-        rel.student = req.user._id;
-        rel.save((err) => {
-            if (err) {
-                console.log(err);
-                res.status(404);
-                res.redirect('/educator');
-            } else {
-                res.status(200);
-                res.redirect('/educator');
-            }
-        })
-    });
+
+    // check student doesn't already have educator
+    StudentRel.findOne({student:req.user._id}).exec((err, rel) => {
+        if (err) { 
+            res.status(400);
+            res.redirect('/students/educator');  
+        } else if (rel) {
+            res.status(400);
+           res.redirect('/students/educator');
+        } else {
+            // find educator via code
+            User.findOne({ code: req.body.code })
+            .exec((err, educator) => {
+                console.log(educator);
+                const rel = new StudentRel();
+                rel.educator = educator._id;
+                rel.student = req.user._id;
+                rel.save((err) => {
+                    if (err) {
+                        console.log(err);
+                        res.status(404);
+                        res.redirect('/students/educator');
+                    } else {
+                        res.status(200);
+                        res.redirect('/students/educator');
+                    }
+                })
+            });
+        }
+    })
+
+   
 }
 
-module.exports= {educator, addEducator, students}
+module.exports= {educator, addEducator, students, addStudent}

@@ -3,6 +3,8 @@ block content
     
     - if (educator)
         h2 Your educator is: #{ educator.name }
+        small #{educator.email}
+        br
         button Click to remove
 
     -if (!educator)
@@ -10,8 +12,8 @@ block content
         p Give this to your educator so they can add you.
         p or
         h2 Add an educator by entering the code they provide: 
-        form(action="/addeducator", method="POST")
+        form(action="/students/educator", method="POST")
             input(type="text", id="code", name="code") 
             button.submit(type="submit") Submit
 
-            
+    

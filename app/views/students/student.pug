@@ -1,0 +1,52 @@
+extends ../layout
+block content 
+    h2 View student results 
+    h3 Student name: 
+    h3 Student email: 
+    h3 Studen results:
+    -if (results[0])
+        // convert dates to date objects and sort so newest are shown first
+        each result in results
+            -result.date = new Date(result.date)
+
+        -results.sort((a, b) => b.date- a.date)
+
+        // produce a card for each previous test taken (i.e. each entry/document in the results DB)
+        each result in results
+            .card.gridcontainer(style="padding: 20px")
+
+                // *** conversions etc ***
+                // convert date to readable format and make it the card header
+                -const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit'};
+                -const date = result.date.toLocaleString("en-UK", options);
+                // convert bool list to fraction and percentage
+                -let totalResults = 0
+                -let passes = 0
+                each result2 in result.results
+                    -if (result2)
+                        -passes++
+                    -totalResults++
+                -let percentage = Math.floor((passes / totalResults) * 100)
+                // ************************   
+
+                // large coloured percentage      
+                .gridleft
+                    -if (percentage <= 20)
+                        p.percentage.red #{percentage}%
+                    -else if (percentage > 20 && percentage < 40)
+                        p.percentage.orange #{percentage}%
+                    -else if (percentage >= 40 && percentage <= 50)
+                        p.percentage.amber #{percentage}%
+                    -else if (percentage > 50 && percentage < 70)
+                        p.percentage.yellow #{percentage}%
+                    -else if (percentage >= 70 && percentage <= 80)
+                        p.percentage.lime #{percentage}%
+                    -else if (percentage > 80)
+                        p.percentage.green #{percentage}%
+                    
+                // date and number of correct answers    
+                .gridright
+                    h2.card-header #{date}
+                    p You got #{passes}/#{totalResults} answers correct.
+    -else
+        p No results found.
