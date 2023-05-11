@@ -10,28 +10,29 @@ block content
                     .right
                         h1.card-header Students
                         p.text View and add new students.
-        a(href="/challenge")
-            .card.flex-left
-                .left
-                    img.brain(src="images/brain-inverse-svg.svg")
-                .right
-                    h1.card-header Take Test
-                    p.text Click here to take the computational thinking test.
-        a(href="/results")
-            .card.flex-left
-                .left(style="text-align:center")
-                    i.fa-solid.fa-file-lines.card-icon
-                .right
-                    h1.card-header View Results
-                    p.text View all your previous test results.
         -if (user.userType == "Student")
-             a(href="/students/educator")
+            a(href="/challenge")
+                .card.flex-left
+                    .left
+                        img.brain(src="images/brain-inverse-svg.svg")
+                    .right
+                        h1.card-header Take Test
+                        p.text Click here to take the computational thinking test.
+            a(href="/results")
+                .card.flex-left
+                    .left(style="text-align:center")
+                        i.fa-solid.fa-file-lines.card-icon
+                    .right
+                        h1.card-header View Results
+                        p.text View all your previous test results.
+            a(href="/students/educator")
                 .card.flex-left
                     .left.flex-center(style="text-align:left")
                         i.fa-solid.fa-graduation-cap.card-icon
                     .right
                         h1.card-header Educator
                         p.text Add an educator so they can see your results.
+            
 
     -else
         h1.pageheader Welcome

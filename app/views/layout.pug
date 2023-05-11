@@ -21,17 +21,17 @@ html
     script(src="/javascripts/challenges.js" defer)
     script(src="/javascripts/renderResults.js" defer)
   body
-    include ./testviews/questions
+    include ./challenge/challenges
     .main-container
       nav
         .nav-buttons 
           .center-content
             img.nav-brain(src="/images/brain-square-inverse.png")
           a.nav-text(href="/") Home
-          a.nav-text(href="/test") Test
-          a.nav-text(href="/results") Results
           -if (user)
             -if (user.userType=="Student")
+              a.nav-text(href="/test") Test
+              a.nav-text(href="/results") Results
               a.nav-text(href="/students/educator") Educator
             -else if (user.userType=="Educator")
               a.nav-text(href="/students") Students
