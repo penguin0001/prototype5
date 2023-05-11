@@ -13,6 +13,7 @@ const checkEducator = require('../middleware/checkEducator');
 // get routes
 router.get('/educator', checkAuthenticated, checkStudent, studentsController.educator);
 router.post('/educator', checkAuthenticated, checkStudent, studentsController.addEducator);
+router.post('/educator/remove', checkAuthenticated, checkStudent, studentsController.removeEducator);
 
 router.get('/', checkAuthenticated, checkEducator, studentsController.students)
 router.post('/', checkAuthenticated, checkEducator, studentsController.addStudent)

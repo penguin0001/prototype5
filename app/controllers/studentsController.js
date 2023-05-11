@@ -54,6 +54,22 @@ const addStudent = (req, res) => {
             });
 }
 
+/* POST /students/remove/:id REMOVE A STUDENT/EDUCATOR LINK */
+const removeStudent = (req, res) => {
+    // delete
+	StudentLink.deleteOne({student: req.params.id}).exec((err) => {
+		if (err) {
+			console.log("Error deleting link");
+			res.status(400);
+			res.redirect("/students")
+		} else {
+			console.log("Link deleted");
+			res.status(200);
+			res.redirect("/students");
+		}
+	});
+}
+
 /* GET '/students/educator'- render add educator page */
 const educator = async (req, res) => {
     const link = await StudentLink.findOne({student:req.user._id}).exec();
@@ -110,20 +126,21 @@ const addEducator = (req, res) => {
     })
 }
 
-/* POST /students/remove/:id REMOVE A STUDENT/EDUCATOR LINK */
-const removeStudent = (req, res) => {
+const removeEducator = (req, res) => {
     // delete
-	StudentLink.deleteOne({student: req.params.id}).exec((err) => {
+	StudentLink.deleteOne({student: req.user._id}).exec((err) => {
 		if (err) {
 			console.log("Error deleting link");
 			res.status(400);
-			res.redirect("/students")
+			res.redirect("/students/educator")
 		} else {
 			console.log("Link deleted");
 			res.status(200);
-			res.redirect("/students");
+			res.redirect("/students/educator");
 		}
 	});
 }
 
-module.exports= {educator, addEducator, students, addStudent, removeStudent}
+
+
+module.exports= {educator, addEducator, students, addStudent, removeStudent, removeEducator}

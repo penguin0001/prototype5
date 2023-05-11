@@ -7,7 +7,8 @@ block content
             p Email address: #{ educator.email }
             p Your educator can view your results history
             br
-            button.red-button Click to remove
+            form(action="/students/educator/remove/", method="POST")
+                button.red-button(type="submit") Click to remove
 
         -if (!educator)
             h2 Your code is: #{ user.code }
