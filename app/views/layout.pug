@@ -28,14 +28,20 @@ html
           .center-content
             img.nav-brain(src="/images/brain-square-inverse.png")
           a.nav-text(href="/") Home
+
           -if (user)
+            
             -if (user.userType=="Student")
               a.nav-text(href="/test") Test
               a.nav-text(href="/results") Results
               a.nav-text(href="/students/educator") Educator
+            
             -else if (user.userType=="Educator")
               a.nav-text(href="/students") Students
+              a.nav-text(href="/institutions") Institutions
+
           a.nav-text(href="/about") About
+          
           -if (user)
             .navright
               small.nav-text #{user.email}
@@ -44,6 +50,7 @@ html
               form(action="/auth/logout", method="POST")
                 button.nav-button(type="submit") Logout&nbsp;&nbsp;
                   i.fa-solid.fa-right-from-bracket 
+
           -else
             .navright
               a.nav-text(href="/auth/register") Register&nbsp;&nbsp;

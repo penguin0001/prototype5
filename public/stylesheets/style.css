@@ -48,6 +48,20 @@ a:hover {
     font-weight: bold;
 }
 
+.remove-button {
+    background: none;
+    border: none;
+    color: orangered;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.remove-button:hover {
+    cursor: pointer;
+    opacity: 60%;
+}
+
 p {
     font-size: 18px;
     color: var(--main-text-color);
@@ -131,3 +145,4 @@ p {
     background-color: var(--main-bg-color);
     width: 30%;
 }
+

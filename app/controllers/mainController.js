@@ -1,5 +1,6 @@
 /* MAIN CONTROLLER: RENDER MISCELLANEOUS PAGES */
 const mongoose = require('mongoose');
+const User = require('../models/users');
 const Institution = require('../models/institutions');
 
 /* GET '/'- render home page */
@@ -12,10 +13,27 @@ const about = (req, res) => {
     res.render('main/about', { title: 'About', user: req.user });
 };
 
-const institution = async (req, res) => {
+const institutions = async (req, res) => {
     const institutions = await Institution.find();
-    
-    res.render('main/institution', { title: 'Institution', user: req.user, institutions: institutions, countries: countryList });
+    res.render('main/institutions', { title: 'Institutions', user: req.user, institutions: institutions, countries: countryList });
+}
+
+const deleteInstitution = async(req, res) => {
+	// remove institution from accounts registered with it
+	await User.updateMany({ institution: req.params.id }, { $set: { institution: null } });
+
+	// delete
+	Institution.findByIdAndDelete(req.params.id).exec((err) => {
+		if (err) {
+			console.log("Error deleting institution");
+			res.status(400);
+			res.redirect("/institutions")
+		} else {
+			console.log("Institution deleted");
+			res.status(200);
+			res.redirect("/institutions");
+		}
+	});
 }
 
 const addInstitution = (req, res) => {
@@ -32,11 +50,11 @@ const addInstitution = (req, res) => {
         if (err) {
             console.log("Error saving institution");
             res.status(400);
-            res.redirect("/institution");
+            res.redirect("/institutions");
         } else {
             console.log("Institution added successfully");
             res.status(200);
-            res.redirect("/institution");
+            res.redirect("/institutions");
         }
     });
 }
@@ -44,8 +62,9 @@ const addInstitution = (req, res) => {
 module.exports = {
     home, 
     about,
-    institution,
-    addInstitution
+    institutions,
+    addInstitution,
+	deleteInstitution
 }
 
 const countryList = [

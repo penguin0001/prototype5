@@ -11,7 +11,10 @@ const checkEducator = require('../middleware/checkEducator');
 // get routes
 router.get('/', mainController.home);
 router.get('/about', mainController.about);
-router.get('/institution', checkAuthenticated, checkEducator, mainController.institution);
-router.post('/institution', checkAuthenticated, checkEducator, mainController.addInstitution);
+router.get('/institutions', checkAuthenticated, checkEducator, mainController.institutions);
+
+// post routes
+router.post('/institutions', checkAuthenticated, checkEducator, mainController.addInstitution);
+router.post('/institutions/delete/:id', checkAuthenticated, checkEducator, mainController.deleteInstitution);
 
 module.exports = router;

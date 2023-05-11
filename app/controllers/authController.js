@@ -52,7 +52,7 @@ const register = (req, res) => {
             res.redirect('/auth/register');
         } else {
             res.status(200)
-            res.redirect('/');
+            res.redirect('/auth/login');
         }
     });
 };
