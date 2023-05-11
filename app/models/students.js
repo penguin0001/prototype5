@@ -1,5 +1,5 @@
 const mongoose = require( 'mongoose' );
-const studentRelSchema = new mongoose.Schema({
+const studentLinkSchema = new mongoose.Schema({
     educator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -12,6 +12,6 @@ const studentRelSchema = new mongoose.Schema({
     }
   });
 
-const StudentRel = mongoose.model('StudentRel', studentRelSchema);
+const StudentLink = mongoose.model('StudentLink', studentLinkSchema);
 
-module.exports = StudentRel;
+module.exports = StudentLink;
