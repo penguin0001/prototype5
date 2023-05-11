@@ -5,7 +5,29 @@ const User = require('../models/users');
 
 /* GET '/results' - get results for current user and render */
 const results = (req, res) => {
-    User.findById(req.user._id)
+    if (req.params.id) {
+        User.findById(req.params.id)
+        .exec((err, student) => {
+            if (err) {
+                console.log("Error finding student");
+                res
+                .status(400)
+                .redirect('/students')
+            } else if (!student) {
+                console.log("User not found");
+                    res
+                    .status(404)
+                    .redirect('/students');
+            } else {
+                console.log("Student found, retrieving results");
+                console.log(student.results);
+                res
+                .status(200)
+                .render('results/results', { title: "Results", results: student.results, user: req.user, student: student });
+            }
+    })
+    } else {
+        User.findById(req.user._id)
         .exec((err, user) => {
             if (err) {
                 console.log("Error finding user");
@@ -25,6 +47,8 @@ const results = (req, res) => {
                 .render('results/results', { title: "Results", results: user.results, user: req.user });
             }
     })
+    }
+    
 };
 
 /* POST '/results' - create a result and add it to the current users results list */

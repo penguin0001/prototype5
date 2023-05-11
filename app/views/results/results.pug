@@ -1,7 +1,12 @@
 extends ../layout
 block content 
     h1.pageheader(style="margin-bottom: 0") Report 
-    p View your previous test results.
+    -if (!student)
+        p View your previous test results.
+    -else
+        p Viewing student results
+        p Student name: #{student.name}
+        p Student email: #{student.email}
 
     -if (results[0])
         // convert dates to date objects and sort so newest are shown first
@@ -46,7 +51,8 @@ block content
                 // date and number of correct answers    
                 .gridright
                     h2.card-header #{date}
-                    p You got #{passes}/#{totalResults} answers correct.
+                    p #{passes}/#{totalResults} answers correct.
     -else
         p No results found.
-            a(href="/challenge")  Take a test!
+            -if(!student)
+                a(href="/challenge")  Take a test!

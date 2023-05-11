@@ -16,6 +16,7 @@ const students = async (req, res) => {
     res.render('students/students', { title: "Students", user: req.user, students: students});
 }
 
+
 /* POST '/students'- add a student to an educator */
 const addStudent = (req, res) => {
     if (!req.body.code) {

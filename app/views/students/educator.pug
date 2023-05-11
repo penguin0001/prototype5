@@ -3,9 +3,10 @@ block content
     
     - if (educator)
         h2 Your educator is: #{ educator.name }
-        small #{educator.email}
+        p Email address: #{educator.email}
+        p Your educator can view your results history
         br
-        button Click to remove
+        button.red-button Click to remove
 
     -if (!educator)
         h2 Your code is: #{ user.code }
@@ -13,7 +14,7 @@ block content
         p or
         h2 Add an educator by entering the code they provide: 
         form(action="/students/educator", method="POST")
-            input(type="text", id="code", name="code") 
-            button.submit(type="submit") Submit
+            input.text-input(type="text", id="code", name="code") 
+            button.submit-button(type="submit") Submit
 
     

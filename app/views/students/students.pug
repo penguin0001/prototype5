@@ -1,11 +1,12 @@
 extends ../layout
 block content 
+    h1.pageheader=title
     h2 Your code is: #{user.code} 
     p Share your code with a student so they can add you as an educator
     p Or add a student by entering the code they provide: 
         form(action="/students", method="POST")
-            input(type="text", id="code", name="code") 
-            button.submit(type="submit") Submit
+            input.text-input(type="text", id="code", name="code") 
+            button.submit-button(type="submit", style="margin: 30px; margin-top: 0px; margin-bottom: 0px;") Submit
     h2 Your students:
     table
         tr 
@@ -17,5 +18,5 @@ block content
                 td #{ student.name } 
                 td #{ student.email }
                 td 
-                    a(href="#") View results 
+                    a(href="/results/" + student._id) View results 
 
