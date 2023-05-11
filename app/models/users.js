@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
     hash: String,
     salt: String,
     results: [resultSchema],
+    institution: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Institution',
+    },
 
     code: {
         type: String,

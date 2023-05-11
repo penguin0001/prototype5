@@ -13,6 +13,13 @@ block content
             input(type="radio", id="student", name="usertype", value="Student")
             label(for="student") Student
         .row
+            label(for="Institution") Institution (optional)
+            br
+            select.text-input(id="institution" name="institution")
+                option Select 
+                each institution in institutions
+                    option(value=institution._id) #{institution.name} (#{institution.country})
+        .row
             label(for="name") Name 
             br
             input.input.text-input(type="text", id="name", name="name", required)

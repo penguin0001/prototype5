@@ -3,10 +3,12 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = require('../models/users');
+const Institution = require('../models/institutions');
 
 /* GET 'auth/register' - render register page */
-const renderRegister = (req, res) => {
-    res.render('auth/register', { title: 'Register' });
+const renderRegister = async (req, res) => {
+    const institutions = await Institution.find();
+    res.render('auth/register', { title: 'Register', institutions: institutions });
 };
 
 /* GET 'auth/login' - render login page */
@@ -15,8 +17,14 @@ const renderLogin = (req, res) => {
 };
 
 /* GET 'auth/account' - render account page */
-const account = (req, res) => {
-    res.render('auth/account', { title: 'Account', user: req.user});
+const account = async (req, res) => {
+    if (req.user.institution) {
+        const institution = await Institution.findById(req.user.institution);
+        res.render('auth/account', { title: 'Account', user: req.user, institution: institution});
+    } else {
+        res.render('auth/account', { title: 'Account', user: req.user});
+    }
+    
 }
 
 /* POST 'auth/register' - add new user to database */
@@ -31,6 +39,9 @@ const register = (req, res) => {
     user.name = req.body.name;
     user.email = req.body.email;
     user.userType = req.body.usertype;
+    if (req.body.institution) {
+        user.institution = req.body.institution;
+    }
     user.setPassword(req.body.password);
     user.generateCode();
     user.save((err) => {
