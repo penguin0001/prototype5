@@ -27,7 +27,7 @@ const addInstitution = (req, res) => {
             res.redirect("/institutions");
         } else {
             console.log("Institution added successfully");
-            res.status(200);
+            res.status(201);
             res.redirect("/institutions");
         }
     });

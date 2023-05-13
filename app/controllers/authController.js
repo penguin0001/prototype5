@@ -47,10 +47,10 @@ const register = (req, res) => {
         if (err) {
             req.flash("error", "There was an error. That user may already exist.");
             console.log(err);
-            res.status(404)
+            res.status(400);
             res.redirect('/auth/register');
         } else {
-            res.status(200)
+            res.status(201);
             res.redirect('/auth/login');
         }
     });

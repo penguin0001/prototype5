@@ -2,7 +2,7 @@
 
 const User = require('../models/users');
 
-/* GET '/results' - get results for current user and render */
+/* GET '/results' - render results page */
 const results = (req, res) => {
     if (req.params.id) {
         User.findById(req.params.id)
@@ -26,28 +26,8 @@ const results = (req, res) => {
             }
     })
     } else {
-        User.findById(req.user._id)
-        .exec((err, user) => {
-            if (err) {
-                console.log("Error finding user");
-                res
-                .status(400)
-                .redirect('/test/error')
-            } else if (!user) {
-                console.log("User not found");
-                    res
-                    .status(404)
-                    .redirect('/test/error');
-            } else {
-                console.log("User found, retrieving results");
-                console.log(user.results);
-                res
-                .status(200)
-                .render('results/results', { title: "Results", results: user.results, user: req.user });
-            }
-    })
+        res.render('results/results', { title: "Results", user: req.user, results: req.user.results });
     }
-    
 };
 
 /* POST '/results' - create a result and add it to the current users results list */
@@ -75,7 +55,7 @@ const createResult = (req, res) => {
                     if (err) {
                         console.log("Failed to save user");
                         res
-                        .status(404)
+                        .status(400)
                         .redirect('/test/error');
                     } else {
                         console.log("Successfully saved user with new result");
