@@ -2,7 +2,6 @@
 
 const User = require('../models/users');
 const Institution = require('../models/institutions');
-jest.mock('../models/institutions');
 
 /* GET /institutions/ Display institutions page incl. a list of institutions */
 const institutions = async (req, res) => {

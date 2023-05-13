@@ -35,14 +35,7 @@ const gracefulShutdown = (msg, callback) => {
     })
 }
 
-// event node uses
-process.once('SIGUS2', () => {
-    gracefulShutdown('nodemon restart', () => {
-        process.kill(process.pid, 'SIGUSR2');
-    });
-});
-
-// main event
+// check for disconnection event
 process.on('SIGINT', () => {
     gracefulShutdown('app termination', () => {
         process.exit(0);
