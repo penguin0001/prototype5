@@ -49,12 +49,6 @@ process.on('SIGINT', () => {
     });
 });
 
-// what heroku uses...maybe others do to?
-process.on('SIGTERM', () => {
-    gracefulShutdown('uh, host app shutdown?', () => {
-        process.exit(0);
-    });
-});
 
 // bring in the schema
 require('../models/users');
