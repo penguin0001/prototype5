@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+/* STUDENTS CONTROLLER - render and manage pages for adding students and educators */
+
 const User = require('../models/users');
 const StudentLink = require('../models/students');
 

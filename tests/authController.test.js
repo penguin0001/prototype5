@@ -1,19 +1,26 @@
 const { renderLogin, renderRegister, account, register, login, logout } = require("../app/controllers/authController");
 const User = require('../app/models/users');
+const Institution = require('../app/models/institutions');
 const passport = require('passport');
 jest.mock('passport');
 jest.mock('../app/models/users');
 
 describe('renderRegister', () => {
-    test('should render auth/register page with title Register', () => {
+    test('should render auth/register page with title Register', async () => {
         // mock req and res objects
         const req = {};
         const res = {
             render: jest.fn()
         };
+        
+        // mock finding institutions
+        Institution.find = jest.fn();
+       
         // call function to be tested
-        renderRegister(req, res);
+        await renderRegister(req, res);
+        
         // tests
+        expect(Institution.find).toHaveBeenCalled();
         expect(res.render).toHaveBeenCalledWith('auth/register', { title: 'Register' });
     });
 });
@@ -49,8 +56,7 @@ describe('account', () => {
 });
 
 describe('register', () => {
-  let req, res;
-  let consoleSpy;
+  let req, res, consoleSpy;
 
   beforeEach(() => {
     // disable console.logs for testing
@@ -81,7 +87,7 @@ describe('register', () => {
     req.body.name = '';
     // call function to be tested
     register(req, res);
-    // check for correct behaviour
+    // tests
     expect(req.flash).toHaveBeenCalledWith('error', 'All fields required');
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.redirect).toHaveBeenCalledWith('/auth/register');
@@ -98,13 +104,13 @@ describe('register', () => {
     }));
     // call function to be tested
     register(req, res);
-    // check for correct behaviour
+    // tests
     expect(req.flash).toHaveBeenCalledWith('error', 'There was an error. That user may already exist.');
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.redirect).toHaveBeenCalledWith('/auth/register');
   });
 
-  test('should redirect to / with a 200 status code if user is successfully registered', () => {
+  test('should redirect to /auth/login with a 200 status code if user is successfully registered', () => {
     // mock User model
     User.mockImplementation(() => ({
       save: jest.fn().mockImplementation((callback) => {
@@ -115,9 +121,9 @@ describe('register', () => {
     }));
     // call function to be tested
     register(req, res);
-    // check for correct behaviour
+    // tests
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.redirect).toHaveBeenCalledWith('/');
+    expect(res.redirect).toHaveBeenCalledWith('/auth/login');
   });
 });
 

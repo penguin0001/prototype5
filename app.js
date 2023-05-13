@@ -19,6 +19,7 @@ const resultsRouter = require('./app/routes/results');
 const authRouter = require('./app/routes/auth');
 const challengeRouter = require('./app/routes/challenge');
 const studentsRouter = require('./app/routes/students');
+const institutionsRouter = require('./app/routes/institutions');
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use('/results', resultsRouter);
 app.use('/auth', authRouter);
 app.use('/test', challengeRouter);
 app.use('/students', studentsRouter);
+app.use('/institutions', institutionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

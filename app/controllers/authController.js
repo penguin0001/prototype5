@@ -1,7 +1,6 @@
 /* AUTH CONTROLLER: RENDER AUTH-RELATED PAGES, REGISTER/LOGIN/LOGOUT USERS */
 
 const passport = require('passport');
-const mongoose = require('mongoose');
 const User = require('../models/users');
 const Institution = require('../models/institutions');
 
