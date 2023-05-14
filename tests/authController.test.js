@@ -1,6 +1,5 @@
 const { renderLogin, renderRegister, account, register, login, logout } = require("../app/controllers/authController");
 const User = require('../app/models/users');
-const Institution = require('../app/models/institutions');
 const passport = require('passport');
 jest.mock('passport');
 jest.mock('../app/models/users');
@@ -12,15 +11,10 @@ describe('renderRegister', () => {
         const res = {
             render: jest.fn()
         };
-        
-        // mock finding institutions
-        Institution.find = jest.fn();
-       
         // call function to be tested
         await renderRegister(req, res);
         
         // tests
-        expect(Institution.find).toHaveBeenCalled();
         expect(res.render).toHaveBeenCalledWith('auth/register', { title: 'Register' });
     });
 });
@@ -31,7 +25,7 @@ describe('renderLogin', () => {
         const req = {};
         const res = {
             render: jest.fn()
-        };
+        }
         // call function to be tested
         renderLogin(req, res);
         // tests
@@ -106,11 +100,11 @@ describe('register', () => {
     register(req, res);
     // tests
     expect(req.flash).toHaveBeenCalledWith('error', 'There was an error. That user may already exist.');
-    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.redirect).toHaveBeenCalledWith('/auth/register');
   });
 
-  test('should redirect to /auth/login with a 200 status code if user is successfully registered', () => {
+  test('should redirect to /auth/login with a 201 status code if user is successfully registered', () => {
     // mock User model
     User.mockImplementation(() => ({
       save: jest.fn().mockImplementation((callback) => {
@@ -122,7 +116,7 @@ describe('register', () => {
     // call function to be tested
     register(req, res);
     // tests
-    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledWith(201);
     expect(res.redirect).toHaveBeenCalledWith('/auth/login');
   });
 });

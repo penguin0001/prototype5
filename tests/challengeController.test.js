@@ -33,7 +33,7 @@ describe('challengeResults', () => {
 });
 
 describe('challengeError', () => {
-    test('should render challenge/error page with title Erorr and user object', () => {
+    test('should render challenge/error page with title Error and user object', () => {
         // mock req and res objects
         const req = {
             user: {}

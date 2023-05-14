@@ -444,8 +444,6 @@ function rfSetUpSubmitButton(submitButton, nextChallenge) {
                     success = true;
                 }
             })
-
-            console.log(success);
             
             // add to final result
             results[2] = success;
@@ -474,12 +472,31 @@ function royalFountains() {
     rfSetUpClearButton(document.getElementById("rf-clear"));
 
     // submit button - submit answers and move on
-    rfSetUpSubmitButton(document.getElementById("rf-submit"), endScreen);
+    rfSetUpSubmitButton(document.getElementById("rf-submit"), deskTrouble);
 }
 
 function deskTrouble() {
     replaceContainer(dtContainer);
-
+    const dtAnswer1 = document.getElementById("dt-submit-1").addEventListener("click", () => {
+        results[3] = true;
+        // move on
+        endScreen();
+    });
+    const dtAnswer2 = document.getElementById("dt-submit-2").addEventListener("click", () => {
+        results[3] = false;
+        // move on
+        endScreen();
+    });
+    const dtAnswer3 = document.getElementById("dt-submit-3").addEventListener("click", () => {
+        results[3] = false;
+        // move on
+        endScreen();
+    });
+    const dtAnswer4 = document.getElementById("dt-submit-4").addEventListener("click", () => {
+        results[3] = false;
+        // move on
+        endScreen();
+    });
     
 }
 // END SCREEN - consists of a title and a button to save results
@@ -493,7 +510,7 @@ function endScreen() {
 }
 
 // start:
-startScreen(deskTrouble);
+startScreen(airConditioning);
 
 
 

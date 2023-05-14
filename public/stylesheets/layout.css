@@ -1,5 +1,8 @@
 /* footer, navbar, general containers */
 
+* {
+    font-display: swap;
+}
 
 .main-container {
     flex: 1;

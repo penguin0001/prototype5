@@ -16,10 +16,3 @@ block content
                 label Account Type 
                 br
                 p #{user.userType}
-            .row 
-                label Institution 
-                br
-                -if (institution)
-                    p #{institution.name} (#{institution.country})
-                -else 
-                    p None
