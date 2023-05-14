@@ -32,7 +32,6 @@ const results = (req, res) => {
 
 /* POST '/results' - create a result and add it to the current users results list */
 const createResult = (req, res) => {
-    console.log(req.user);
     User.findById(req.user._id)
         .exec((err, user) => {
             if (err) {

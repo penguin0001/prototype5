@@ -10,6 +10,7 @@ const challengeContainer = document.getElementById("challenge-container");
 const airconContainer = document.getElementById("air-con");
 const crashContainer = document.getElementById("crash");
 const rfContainer = document.getElementById("fountains");
+const dtContainer = document.getElementById("desks");
 const endContainer = document.getElementById("endscreen");
 const startContainer = document.getElementById("startscreen");
 
@@ -474,10 +475,13 @@ function royalFountains() {
 
     // submit button - submit answers and move on
     rfSetUpSubmitButton(document.getElementById("rf-submit"), endScreen);
+}
+
+function deskTrouble() {
+    replaceContainer(dtContainer);
 
     
 }
-
 // END SCREEN - consists of a title and a button to save results
 function endScreen() {
     replaceContainer(endContainer);
@@ -489,7 +493,7 @@ function endScreen() {
 }
 
 // start:
-startScreen(airConditioning);
+startScreen(deskTrouble);
 
 
 

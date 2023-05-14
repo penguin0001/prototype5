@@ -38,6 +38,7 @@ const register = (req, res) => {
     user.name = req.body.name;
     user.email = req.body.email;
     user.userType = req.body.usertype;
+    
     if (req.body.institution) {
         user.institution = req.body.institution;
     }

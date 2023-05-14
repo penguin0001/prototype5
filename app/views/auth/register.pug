@@ -15,8 +15,7 @@ block content
         .row
             label(for="Institution") Institution (optional)
             br
-            select.text-input(id="institution" name="institution")
-                option Select 
+            select.text-input(id="institution", name="institution")
                 each institution in institutions
                     option(value=institution._id) #{institution.name} (#{institution.country})
         .row
