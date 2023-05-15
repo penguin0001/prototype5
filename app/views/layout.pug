@@ -22,9 +22,6 @@ html(lang="en")
     link(rel='stylesheet', href='/stylesheets/results.css')
     link(rel='stylesheet', href='/stylesheets/auth.css')
   body
-    // scripts
-    script(src="/javascripts/challenges.js" defer)
-    script(src="/javascripts/renderResults.js" defer)
     include ./challenge/challenges
     .main-container
       nav
@@ -75,5 +72,6 @@ html(lang="en")
           li 
             a.footer-text(href="/about")  About
           br
-          p.footer-text &copy; Website 2023
+          li
+            .footer-text &copy; Robyn Greer 2023
 

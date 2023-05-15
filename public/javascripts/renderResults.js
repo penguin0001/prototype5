@@ -7,7 +7,7 @@ const resultArr = sessionStorage.getItem("results").split(",");
 if (document.getElementById("challengeResults")) document.getElementById("challengeResults").value = resultArr;
 
 
-// get current date and time, nicely formatted
+// get current date and time
 const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit'};
 const date = new Date().toLocaleString("en-UK", options);
 

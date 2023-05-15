@@ -1,7 +1,7 @@
 :root {
-    --links-color: rgb(0, 149, 255);
+    --links-color: #0095FF;
     --main-bg-color: #F5F5F5;
-    --main-text-color: #7f7f7f;
+    --main-text-color: #595959;
     --heading-text-color: black;
     --navbar-bg-color: white;
     --card-bg-color: white;
@@ -11,6 +11,6 @@
     --footer-text-color: #6c6972;
     --button-text-color: white;
     --button-bg-color: #33343A;
-    --blue-gradient: linear-gradient(rgb(0, 149, 255) 40%, rgb(53, 171, 255) 99%);
+    --blue-gradient: linear-gradient(#0095FF 40%, #35ABFF 99%);
     --blue-gradient-2: linear-gradient(#5de2ff, #0096FF);
 }
