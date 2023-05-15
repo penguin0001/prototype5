@@ -18,43 +18,6 @@ const students = async (req, res) => {
 }
 
 
-/* POST '/students'- add a student to an educator */
-const addStudent = (req, res) => {
-    if (!req.body.code) {
-        console.log("No code found");
-        res.status(400);
-        res.redirect('/students/');
-    } 
-    // find student via code
-    User.findOne({ code: req.body.code })
-            .exec((err, student) => {
-                // check student doesn't already have educator
-                StudentLink.findOne({student:student._id}).exec((err, link) => {
-                    if (err) { 
-                        res.status(400);
-                        res.redirect('/students/');  
-                    } else if (link) {
-                        res.status(400);
-                        res.redirect('/students/');
-                    } else {
-                        const link = new StudentLink();
-                        link.educator = req.user._id;
-                        link.student = student._id;
-                        link.save((err) => {
-                            if (err) {
-                                console.log(err);
-                                res.status(404);
-                                res.redirect('/students/');
-                            } else {
-                                res.status(200);
-                                res.redirect('/students/');
-                            }
-                        });
-                    }
-                });
-            });
-}
-
 /* POST /students/remove/:id REMOVE A STUDENT/EDUCATOR LINK */
 const removeStudent = (req, res) => {
     // delete
@@ -144,4 +107,4 @@ const removeEducator = (req, res) => {
 
 
 
-module.exports= {educator, addEducator, students, addStudent, removeStudent, removeEducator}
+module.exports= {educator, addEducator, students, removeStudent, removeEducator}

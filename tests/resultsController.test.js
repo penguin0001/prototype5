@@ -11,7 +11,9 @@ describe('results', () => {
         req = {
             user: {},
             flash: jest.fn(),
-            params: {}
+            params: {
+                id: null
+            }
         };
         res = {
             status: jest.fn().mockReturnThis(),
@@ -35,7 +37,7 @@ describe('results', () => {
         // call function to be tested
         results(req, res);
         // tests
-        expect(User.findById).toHaveBeenCalled();
+        expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(400);
         expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
@@ -50,7 +52,7 @@ describe('results', () => {
         // call function to be tested
         results(req, res);
         // tests
-        expect(User.findById).toHaveBeenCalledWith();
+        expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(404);
         expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
@@ -69,7 +71,7 @@ describe('results', () => {
         // call function to be tested
         results(req, res);
         // tests
-        expect(User.findById).toHaveBeenCalledWith();
+        expect(User.findById).toHaveBeenCalledWith(req.user._id);
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.render).toHaveBeenCalledWith('results/results', {
             title: 'Results',
@@ -153,7 +155,7 @@ describe('createResult', () => {
         createResult(req, res);
         // tests
         expect(User.findById).toHaveBeenCalledWith(req.user._id);
-        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.status).toHaveBeenCalledWith(404);
         expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 

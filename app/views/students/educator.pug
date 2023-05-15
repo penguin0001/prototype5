@@ -11,9 +11,8 @@ block content
                 button.red-button(type="submit") Click to remove
 
         -if (!educator)
-            h2 Your code is: #{ user.code }
             p Educators can view your results.
-            p Give this code to your educator so they can add you or add an educator by entering the code they provide:
+            p Add an educator by entering the code they provide:
             form(action="/students/educator", method="POST")
                 input.text-input(type="text", id="code", name="code") 
                 button.submit-button(type="submit", style="margin: 30px; margin-top: 0px; margin-bottom: 0px;") Submit

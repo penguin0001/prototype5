@@ -4,10 +4,7 @@ block content
     .card
         h2 Your code is: #{user.code} 
         p Add students so you can see their results.
-        p Share your code with a student so they can add you as an educator, or add a student by entering the code they provide: 
-            form(action="/students", method="POST")
-                input.text-input(type="text", id="code", name="code") 
-                button.submit-button(type="submit", style="margin: 30px; margin-top: 0px; margin-bottom: 0px;") Submit
+        p Share your code with a student so they can add you as an educator.
         h2 Your students:
         table
             tr 
