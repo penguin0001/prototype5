@@ -2,7 +2,7 @@
 
 // note - order is currently hardcoded into these functions
 // store results in this array of booleans - true being a correct answer, false being wrong
-// after the final challenge this will be saved to the databse along with the date the test was taken
+// after the final challenge this will be saved to the database along with the date the test was taken
 let results = new Array(3);
 
 // get HTML for challenges
@@ -111,14 +111,11 @@ function acSetUpSubmit(submitButton, nextChallenge) {
     submitButton.addEventListener("click", () => {
         const positionsString = JSON.stringify(acGetUnitPositions());
         if (positionsString.includes(null) || airConUnits < 4) {
-            console.log("place more");
             document.getElementById("ac-warning").style.visibility = "visible";
         } else if (positionsString == answer1 || positionsString == answer2 || positionsString == answer3) {
-            console.log("Correct");
             results[0] = true;
             nextChallenge();
         } else {
-            console.log("Wrong");
             results[0] = false;
             nextChallenge();
         }

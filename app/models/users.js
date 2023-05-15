@@ -41,6 +41,15 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+// generate a 10-digit code (for adding educator)
+userSchema.methods.generateCode = function () {
+    let code = "";
+    for (let i = 0; i < 5; i++) {
+        code += Math.floor(Math.random() * 10);
+    }
+    this.code = code;
+}
+
 // encrypt password into hash
 userSchema.methods.setPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex');
@@ -57,14 +66,7 @@ userSchema.methods.validatePassword = function (password) {
     return this.hash === hash;
 };
 
-// generate a 10-digit code (for adding educator)
-userSchema.methods.generateCode = function () {
-    let code = "";
-    for (let i = 0; i < 5; i++) {
-        code += Math.floor(Math.random() * 10);
-    }
-    this.code = code;
-}
+
 
 const User = mongoose.model('User', userSchema);
 

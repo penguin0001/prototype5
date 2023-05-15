@@ -27,7 +27,7 @@ mongoose.connection.on("disconnected", () => {
 });
 
 
-// now need to close it (listen for SIGINT/SIGUSR2)
+// close connection
 const gracefulShutdown = (msg, callback) => {
     mongoose.connection.close( () => {
         console.log(`Mongoose disconnected through ${msg}`)

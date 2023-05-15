@@ -27,23 +27,23 @@ const results = (req, res) => {
         })
     } else {
         User.findById(req.user._id)
-        .exec((err, student) => {
+        .exec((err, user) => {
             if (err) {
-                console.log("Error finding student");
+                console.log("Error finding user");
                 res
                 .status(400)
-                .redirect('/students')
-            } else if (!student) {
+                .redirect('/test/error')
+            } else if (!user) {
                 console.log("User not found");
                     res
                     .status(404)
-                    .redirect('/students');
+                    .redirect('/test/error');
             } else {
-                console.log("Student found, retrieving results");
-                console.log(student.results);
+                console.log("User found, retrieving results");
+                console.log(user.results);
                 res
                 .status(200)
-                .render('results/results', { title: "Results", results: student.results, user: req.user, student: student });
+                .render('results/results', { title: "Results", results: user.results, user: req.user });
             }
         })
     }
