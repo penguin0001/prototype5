@@ -237,7 +237,7 @@ describe('createResult', () => {
         expect(res.redirect).toHaveBeenCalledWith('/test/error');
     });
 
-    test('should redirect to /test/results with status code 201 if user succesfully saved', () => {
+    test('should redirect to /test/results with status code 201 if user successfully saved', () => {
         // mock user object
         const user = { 
             results: [ "result1" ] 

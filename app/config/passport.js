@@ -15,14 +15,14 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (username, password, 
                 });
             }
             
-            // user w invalid password
+            // user with invalid password
             if (!user.validatePassword(password)) {
                 return done(null, false, {
                     message: 'Incorrect password'
                 });
             }
 
-            // user!
+            // user found
             return done(null, user);
         });
     }
