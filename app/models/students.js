@@ -1,4 +1,5 @@
 const mongoose = require( 'mongoose' );
+// LINK STUDENTS TO EDUCATORS
 const studentLinkSchema = new mongoose.Schema({
     educator: {
       type: mongoose.Schema.Types.ObjectId,
